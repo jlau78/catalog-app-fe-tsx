@@ -1,5 +1,6 @@
 import React from "react"
 import {Link} from "react-router-dom"
+import ImagesDisplay from "./ImagesDisplay"
 
 type Props = {
     item: IItem,
@@ -16,18 +17,21 @@ const SearchListingRow: React.FC<Props> = ({item, idx}) => {
                     <div className="Card--text__heading">
                         <h4>Description: {item.description}</h4>
                         <p>Price: {item.price}</p>
+                        <p>
+                            <Link to={'/item/' + item.itemId}>
+                                Item id: {item.itemId}
+                            </Link>
+                        </p>
                     </div>
                     <div className="Card--text__content">
                         <p>{idx+1} - {item.fullDescription}</p>
                     </div>
                 </div>
 
-                <Link to={`/item/${item.itemId}`}>
-                    <div className="Card--thumbnail__images">
-                        <img src={item.thumbnails} className="Card--thumbnail__img"
-                            alt="Main"/>
+                debug: images: {item?.thumbnails}
 
-                    </div>
+                <Link to={`/item/${item.itemId}`}>
+                    <ImagesDisplay images={item?.thumbnails} />
                 </Link>
             </div>
         </React.Fragment>

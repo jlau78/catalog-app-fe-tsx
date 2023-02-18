@@ -1,0 +1,71 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Edge catalog-app-fe",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Launch Chrome catalog-app-fe - from mccd-web app",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}",
+            // "webRoot": "/Users/jameslau/work/code/ho/gro/mccd/mccd-web",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "meteor://💻app/*": "${workspaceFolder}/*",
+                "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
+                "webpack://?:*/*": "${workspaceFolder}/*"
+            }
+
+        },
+        {
+            "name": "Launch catalog-app-fe",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}",
+            // "webRoot": "/Users/jameslau/work/code/ho/gro/mccd/mccd-web",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "meteor://💻app/*": "${workspaceFolder}/*",
+                "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
+                "webpack://?:*/*": "${workspaceFolder}/*"
+            },
+            "preLaunchTask": "tsc: build - tsconfig.json",
+            "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+
+        },
+        {
+            "name": "ts-node",
+            "type": "node",
+            "request": "launch",
+            "args": ["${relativeFile}"],
+            "runtimeArgs": [
+                "-r", "ts-node/register"
+            ],
+            "cwd": "${workspaceRoot}",
+            // "protocol": "inspector",
+            "internalConsoleOptions": "openOnSessionStart"
+        }, {
+            "name": "Debug Jest Tests",
+            "type": "node",
+            "request": "launch",
+            "args": ["${relativeFile}"],
+            "runtimeArgs": [
+                "--inspect-brk",
+                "${workspaceRoot}/node_modules/.bin/jest",
+                "--runInBand",
+                "--coverage",
+                "false"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+
+    ]
+}

@@ -7,7 +7,7 @@ interface IItem {
     price: string
     areaCodes?: string[]
     featureList: FeaturesList
-    thumbnails?: string
+    thumbnails?: string[]
 
     // optional fields as denoted by ?
     createdAt?: string
