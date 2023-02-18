@@ -4,7 +4,7 @@ interface IItem {
     name: string
     description: string
     fullDescription: string
-    price: double
+    price: string
     areaCodes?: string[]
     featureList: FeaturesList
     thumbnails?: string

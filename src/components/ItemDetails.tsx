@@ -7,7 +7,7 @@ import ItemAttributes1 from "./ItemAttributes1";
 // const ItemDetails: React.FC = () => {
 export default function ItemDetails() {
 
-    const params = useParams();
+    const params = useParams()
     const itemId = params.itemId
 
     const [item, setItem] = useState<IItem>()
