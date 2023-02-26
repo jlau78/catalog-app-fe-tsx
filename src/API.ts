@@ -8,7 +8,6 @@ export const getItems = async(): Promise<AxiosResponse<ApiDataType>> => {
         const items: AxiosResponse<ApiDataType> = await axios.get(
             baseUrl + "/items"
         )
-        console.log(`Get Items endpoint called, items:${items}`)
         return items
 
     } catch (error) {
@@ -22,7 +21,6 @@ export const getItem = async(itemId: string | any): Promise<AxiosResponse<ApiDat
     try {
         const item: AxiosResponse<ApiDataType> = await axios.get(
             baseUrl + `/item/${itemId}`);
-        console.log(`GetItem endpoint called, item: ${item}`);
         
         return item;
 

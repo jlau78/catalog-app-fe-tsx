@@ -12,9 +12,27 @@ code {
     monospace;
 }
 
+h3 {
+  font-size: 1rem;
+  font-weight: 1.2rem;
+}
+
+div.listing-content {
+  border: 1 1 red;
+  border-top: solid 2px green ;
+  flex-grow: initial;
+  flex-wrap: wrap;
+  max-width: 400px;
+  max-height: 40%;
+}
+
+a {
+  color:brown;
+}
+
 .Card--thumbnail__img {
-  max-width: 250px;
-  max-height: 250px;
+  max-width: 50px;
+  max-height: 50px;
 }
 
 .Card--text__heading {
@@ -29,7 +47,7 @@ code {
 
 .Card--container {
   max-width: 350px;
-  max-height: 600px;
+  max-height: 500px;
 }
 
 .Listing--container {
@@ -39,4 +57,11 @@ code {
   align-items:center;
   margin-left: 2em;
   margin-right: 2em;
+}
+
+.search_form_box {
+
+}
+
+.Card--item-container {
 }

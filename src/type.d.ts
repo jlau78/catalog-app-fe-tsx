@@ -4,10 +4,10 @@ interface IItem {
     name: string
     description: string
     fullDescription: string
-    price: double
+    price: string
     areaCodes?: string[]
     featureList: FeaturesList
-    thumbnails?: string
+    thumbnails?: string[]
 
     // optional fields as denoted by ?
     createdAt?: string

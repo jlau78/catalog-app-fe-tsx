@@ -1,15 +1,17 @@
+import { hot } from "react-hot-loader"
 import * as React from 'react';
-
+import {BrowserRouter, Routes, Route, Link, useParams} from 'react-router-dom';
 import './App.css';
+import "./assets/main.module.scss"
+
 import SearchItem from "./components/SearchItem"
 import AppRoutes from "././routes/Routes"
 import ItemDetails from './components/ItemDetails';
 import ItemListing from './components/SearchListing';
 import About from './components/About';
-import {BrowserRouter, Routes, Route, Link, useParams} from 'react-router-dom';
 
 
-export default function App() {
+const App = () => {
 
     // Issue: lazy loading of components did not work for the Routes
     // const ItemDetails = React.lazy(() => import ('./components/ItemDetails'));
@@ -19,9 +21,6 @@ export default function App() {
     return(
 
       <div id="main">
-        <div id="header">
-          <h1>Catalog Listing</h1>
-        </div>
         <div>
           <SearchItem />
         </div>
@@ -40,3 +39,6 @@ export default function App() {
 
     )
 }
+
+export default App
+// export default hot(module)(App)
