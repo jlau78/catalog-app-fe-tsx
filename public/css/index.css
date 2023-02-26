@@ -12,9 +12,27 @@ code {
     monospace;
 }
 
+h3 {
+  font-size: 1rem;
+  font-weight: 1.2rem;
+}
+
+div.listing-content {
+  border: 1 1 red;
+  border-top: solid 2px green ;
+  flex-grow: initial;
+  flex-wrap: wrap;
+  max-width: 400px;
+  max-height: 40%;
+}
+
+a {
+  color:brown;
+}
+
 .Card--thumbnail__img {
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 50px;
+  max-height: 50px;
 }
 
 .Card--text__heading {
@@ -41,6 +59,9 @@ code {
   margin-right: 2em;
 }
 
-.Card--item-container {
+.search_form_box {
 
+}
+
+.Card--item-container {
 }

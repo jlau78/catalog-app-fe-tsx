@@ -2,6 +2,7 @@ import { hot } from "react-hot-loader"
 import * as React from 'react';
 import {BrowserRouter, Routes, Route, Link, useParams} from 'react-router-dom';
 import './App.css';
+import "./assets/main.module.scss"
 
 import SearchItem from "./components/SearchItem"
 import AppRoutes from "././routes/Routes"
@@ -20,9 +21,6 @@ const App = () => {
     return(
 
       <div id="main">
-        <div id="header">
-          <h1>Catalog Search Listing</h1>
-        </div>
         <div>
           <SearchItem />
         </div>

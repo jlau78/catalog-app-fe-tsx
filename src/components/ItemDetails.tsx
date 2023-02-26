@@ -28,7 +28,6 @@ export default function ItemDetails() {
 
         <div className="Card--item-container" key={item?.itemId}>
             <div>
-                debug: images: {item?.thumbnails}
                 <ImagesDisplay images={item?.thumbnails} />
             </div>
             <div className="Card--item-details" data-id={item?.itemId} id='item-details'>

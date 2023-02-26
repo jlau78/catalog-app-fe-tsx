@@ -36,8 +36,6 @@ const ItemAttributes1: React.FC<Props> = ({features}) => {
                         <span className="attributes-value">{features["Total # Rooms"]}</span>
                     </li>
 
-
-
                 </ul>
             </div>
         </div>

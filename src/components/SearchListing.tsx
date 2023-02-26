@@ -6,7 +6,7 @@ import {useStyles} from "../assets/styles"
 import SearchListingRow from "./SearchListingRow";
 import {getItems} from "./../API"
 
-// import styles from '../assets/pagination.module.scss'
+import styles from "../assets/main.module.scss"
 
 // const ItemListing: React.FC = () => {
 
@@ -17,8 +17,11 @@ export default function ItemListing() {
 
     let [searchParams, setSearchParams] = useSearchParams()
     let [pagesize, setPageSize] = useState<number>(10)
+    let [searchTerm, setSearchTerm] = useState("")
+
     const queryParams = new URLSearchParams(window.location.search)
     const pageParam = searchParams.get('page')
+    const searchParam = searchParams.get('searchterm')
     const curpage = pageParam ? Number(pageParam) : 1
     // const pagesize = 10
     const totalpages = items.length
@@ -42,13 +45,13 @@ export default function ItemListing() {
     }
 
     return (
-        <Card className={classes.root}>
+        <div>
             <div>
                 <h3 className='heading-pagination'>Search Results</h3>
                 <div>
-                    <span className='heading-details'>
+                    <span className='headingDetails'>
                         <span>
-                            <Link to={'/listing?page=' + (curpage === 1 ? 1 :curpage - 1)}>Previous</Link> ...
+                            <Link to={'/listing?page=' + (curpage === 1 ? 1 :curpage - 1)}>Previous</Link> ... 
                             <Link to={'/listing?page=' + (curpage === (Math.round(items.length/pagesize))? curpage : curpage + 1)}>
                                 Next
                             </Link>
@@ -67,7 +70,7 @@ export default function ItemListing() {
                     </span>
                 </div>
             </div>
-            <div className="Listing--container">
+            <div className={styles.cardListingContainer}>
             {
                 items.slice(curpage, pagesize).map((item : IItem, idx : number) => (
                     <>
@@ -78,6 +81,6 @@ export default function ItemListing() {
 
             } 
             </div>
-        </Card>
+        </div>
     )
 }
