@@ -10,6 +10,9 @@ import ItemDetails from './components/ItemDetails';
 import ItemListing from './components/SearchListing';
 import About from './components/About';
 
+import styles from './assets/main.module.scss'
+
+import { style } from "@mui/system";
 
 const App = () => {
 
@@ -38,6 +41,10 @@ const App = () => {
       </div>
 
     )
+}
+
+export function useStyles() {
+  return styles;
 }
 
 export default App

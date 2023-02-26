@@ -4,7 +4,9 @@ const {ProvidePlugin} = require('webpack');
 const dependencies = require('../package.json').dependencies;
 const path = require('path');
 
+
 module.exports = {
+
     entry: './src/index.ts',
     mode: 'development',
     context: path.resolve(__dirname, '../'),
@@ -55,16 +57,27 @@ module.exports = {
                         loader: 'file-loader'
                     },
                 ]
-            }, {
+            }, 
+            {
                 test: /\.s[ac]ss$/i,
                 use: [
                     // Creates `style` nodes from JS strings
                     "style-loader",
-                    // Translates CSS into CommonJS
-                    "css-loader",
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                // use CSSModules but generate local classnames
+                                mode: 'local',
+                                // localIdentName: IS_DEV ? '[local]' : '[hash:base64:5]',
+                                // localIdentName: '[local]__[hash:base64:5]'
+                                localIdentName: '[local]'
+                            }
+                        }
+                    },
                     // Compiles Sass to CSS
                     "sass-loader",
-                ]
+                ],
             },
         ]
     },

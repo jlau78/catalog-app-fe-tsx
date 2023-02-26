@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from "react";
 
-import styles from '../assets/main.module.scss'
+import {useStyles} from './../App'
 
 type Props = {
     images?: string[]
 }
+
+const styles = useStyles()
 
 const ImagesDisplay: React.FC<Props> = ({images}) => {
 
@@ -31,9 +33,7 @@ const ImagesDisplay: React.FC<Props> = ({images}) => {
                 ))) 
                 
         } 
-        <p>
-            images array length: {images?.length}
-        </p>
+
     </div>)
 }
 

@@ -2,16 +2,13 @@ import React, {useState, useEffect} from "react";
 import {Routes, Route, Link, useParams} from "react-router-dom"
 import { useSearchParams } from "react-router-dom";
 import {Card} from "@mui/material"
-import {useStyles} from "../assets/styles"
 import SearchListingRow from "./SearchListingRow";
 import {getItems} from "./../API"
 
-import styles from "../assets/main.module.scss"
-
-// const ItemListing: React.FC = () => {
+import {useStyles} from './../App'
 
 export default function ItemListing() {
-    const classes = useStyles()
+    const styles = useStyles()
 
     const [items, setItems] = useState < IItem[] > ([])
 
@@ -45,29 +42,27 @@ export default function ItemListing() {
     }
 
     return (
-        <div>
-            <div>
+        <div id='search-listing-container'>
+
+            <div id='pagination-group'>
                 <h3 className='heading-pagination'>Search Results</h3>
-                <div>
-                    <span className='headingDetails'>
-                        <span>
-                            <Link to={'/listing?page=' + (curpage === 1 ? 1 :curpage - 1)}>Previous</Link> ... 
-                            <Link to={'/listing?page=' + (curpage === (Math.round(items.length/pagesize))? curpage : curpage + 1)}>
-                                Next
-                            </Link>
-                        </span>
-                        <span>  </span>
-                        <span>
-                            Page size: 
-                            <select onChange={onPagesizeChange} className='form-select'>
-                                <option value="10">10</option>
-                                <option value="30">30</option>
-                                <option value="100">100</option>
-                            </select>
-                        </span>
-                        <p>Page {curpage} of {Math.round(items.length / pagesize)}</p>
-                        <p>Displaying items: {curpage * pagesize}</p>
+                <div id='pagination-links' className='pagignation-nav'>
+                    <span id='nav-links'>
+                        <Link to={'/listing?page=' + (curpage === 1 ? 1 :curpage - 1)}>Previous</Link> ... 
+                        <Link to={'/listing?page=' + (curpage === (Math.round(items.length/pagesize))? curpage : curpage + 1)}>
+                            Next
+                        </Link>
                     </span>
+                    <span id='pagination-page-size'>
+                        Page size: 
+                        <select onChange={onPagesizeChange} className='form-select'>
+                            <option value="10">10</option>
+                            <option value="30">30</option>
+                            <option value="100">100</option>
+                        </select>
+                    </span>
+                    <p>Page {curpage} of {Math.round(items.length / pagesize)} 
+                    , Displaying items: {curpage * pagesize}</p>
                 </div>
             </div>
             <div className={styles.cardListingContainer}>
@@ -81,6 +76,7 @@ export default function ItemListing() {
 
             } 
             </div>
+
         </div>
     )
 }

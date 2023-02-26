@@ -1,84 +1,103 @@
-<html> 
-    <head>
-        <link rel="stylesheet" href ="../css/index.css" /> 
-    </head>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/index.css">
+  <title>Inbox</title>
+  <script defer="" src="main.js"></script>
+  <script defer="" src="remoteEntry.js"></script>
+  <style id="MTA0MDAwMDAxOTk5OTk0Nw=="></style>
+  <style>.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
+</head>
+
 <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">
-        <div id="main">
-            <div id="header">
-                <h1>Catalog Search Listing</h1>
-            </div>
-            <div>
-                <div>
-                    <h1>Search for Item</h1>
-                    <div id="search_form_container">
-                        <form id="area_search_form" action="/listing">
-                            <label>Area<input id="area_search" type="text" value=""></label>
-                                <button id="search_button" class="Card--button" type="submit">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div id="content">
-                    <div data-id="16247995">
-                        <h1>Item Details for
-                        </h1>
-                        <div>
-                            <h2></h2>
-                            <div class="Card--price"></div>
-                            <div class="Card-details-content">
-                                <div class="Card--text">
-                                    <p>
-                                        â­ï¸Two Double Roomsâ­ï¸  £1000 PCM, all bills included (Negotiable)â­ï¸ Available from 23/01/2022â­ï¸Rooms suitable for one person, per room. Wandsworth Road, Londonâ 10 Minute walk to Wandsworth Railway station &amp; Nine Elms station.â Room re-painted.â Part furnished room (bed, wardrobe, drawers).â Shared bathroom with bathâ Kitchen - refrigerator, a freezer, a washing machine / Dryer.â Permitted street parkingThe rooms are suitable for a single, working professional!Deposit (1 month's rent) and references required.These rooms would be beneficial for someone who works in the city or near. The flat is very neat and quiet with separate toilet, kitchen and bathroom. This flat is situated in the centre of many tube stations and about 7- 10min walking distance to the following stations. Stockwell station, nine elms station, Vauxhall station, battersea power station, and wandsworth road overground. Easy access and regular bus service to City, clapham junction, Brixton and more and it's 3-5min walking distance to the bus stop.The flat is very neat and quite but doesn't have much space so I am looking for a professionals perferrably Male who does not have much stuff to display in the kitchen area. Preferred mate: must be responsible and have respect for others. Must also be neat and tidy up themselves.If you are interested in viewing this room please contact.
-                                    </p>
-                                </div>
-                                <div class="Card-attributes">
-                                    <div class="Card-attributes">
-                                        <div>
-                                            <span class="attributes-title" id="attributes">Attributes:</span>
-                                            <ul>
-                                                <li>
-                                                    <span class="attributes-key">Deposit:
-                                                    </span>
-                                                    <span class="attributes-value">£850.00</span>
-                                                </li>
-                                                <li>
-                                                    <span class="attributes-key">Available:
-                                                    </span>
-                                                    <span class="attributes-value">08 Jan 2023</span>
-                                                </li>
-                                                <li>
-                                                    <span class="attributes-key">Minimum Term:
-                                                    </span>
-                                                    <span class="attributes-value">6 months</span>
-                                                </li>
-                                                <li>
-                                                    <span class="attributes-key">Maximum Term:
-                                                    </span>
-                                                    <span class="attributes-value"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="attributes-key">Number of Flatmates:
-                                                    </span>
-                                                    <span class="attributes-value">1</span>
-                                                </li>
-                                                <li>
-                                                    <span class="attributes-key">Number of Rooms:
-                                                    </span>
-                                                    <span class="attributes-value"></span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <div id="main">
+      <div>
+        <div>
+          <h4>Search</h4>
+          <div id="search_form_box">
+            <form id="area_search_form" action="/listing"><label for="searchbox" class="box-label">Area: </label><input id="searchbox" name="searchbox" class="box-input" type="text" value=""><button id="search_button" class="Card--button" type="submit">Search</button></form>
+          </div>
         </div>
+      </div>
+      <div id="content">
+        <div class="Card--item-container">
+          <div>
+            <div class="Card-thumnail-container"><span><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/86/15/86156655.jpg" class="thumbnailImg" alt="Main"></span></div>
+          </div>
+          <div class="Card--item-details" data-id="16468833" id="item-details">
+            <h1>Item Details for </h1>
+            <div>
+              <h2></h2>
+              <div class="Card--price"></div>
+              <div class="Card-details-content">
+                <div class="Card--text">
+                  <p>
+                    We are lucky to have this three bed available right next to Vauxhall station in a modern development with 3 large rooms and a kitchen dining area.Property consists of...1- Large Master ensuite2. Standard double room3. Enormous double with balcony4. A kitchen with dining area.Property has views of the Shard with a 24 hour concierge perfect for professionals as well connected with fantastic transport links....
+                  </p>
+                </div>
+                <div class="Card-attributes">
+                  <div class="Card-attributes">
+                    <div><span class="attributes-title" id="attributes">Attributes:</span>
+                      <ul>
+                        <li><span class="attributes-key">Deposit: </span><span class="attributes-value"></span></li>
+                        <li><span class="attributes-key">Available: </span><span class="attributes-value">15 Jan 2023</span></li>
+                        <li><span class="attributes-key">Minimum Term: </span><span class="attributes-value">6 months</span></li>
+                        <li><span class="attributes-key">Maximum Term: </span><span class="attributes-value"></span></li>
+                        <li><span class="attributes-key">Number of Flatmates: </span><span class="attributes-value"></span></li>
+                        <li><span class="attributes-key">Number of Rooms: </span><span class="attributes-value"></span></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 
-
-    </body>
 </html>
