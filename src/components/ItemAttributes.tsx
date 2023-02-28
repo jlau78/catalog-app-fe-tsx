@@ -39,10 +39,14 @@ const ItemAttributes: React.FC<Props> = ({features}) => {
             <div>
                 <span className="attributes-title" id="attributes">Attributes:</span>
                 <ul>
-                    {getMapKeys().map((key) => 
+                    {getMapKeys().map((key : string, idx : number) => 
                          <li>
-                            <span className="attributes-key">{key}: </span>
-                            <span className="attributes-value">{getFeaturesMap?.prototype.get(key)}</span>
+                            <span className="attributes-key" key={'attr_'+idx.toString()}>
+                                {key}: 
+                            </span>
+                            <span className="attributes-value" key={'attrval_'+idx.toString()}>
+                                {getFeaturesMap?.prototype.get(key)}
+                            </span>
                         </li>
                    
                     )}
