@@ -3,8 +3,8 @@ import {BrowserRouter, Routes, Route, Link, useParams} from 'react-router-dom';
 import "./assets/main.module.scss"
 
 import SearchItem from "./components/SearchItemForm"
-import ItemDetails from './components/ItemDetails';
-import ItemListing from './components/SearchListing';
+import ItemDetails from './pages/ItemDetails';
+import ItemListing from './pages/SearchListing';
 import About from './components/About';
 
 import styles from './assets/main.module.scss'

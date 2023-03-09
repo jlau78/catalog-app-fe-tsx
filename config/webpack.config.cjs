@@ -3,7 +3,7 @@ const {ModuleFederationPlugin} = require('webpack').container;
 const {ProvidePlugin} = require('webpack');
 const dependencies = require('../package.json').dependencies;
 const path = require('path');
-
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 module.exports = {
 
@@ -19,7 +19,18 @@ module.exports = {
         minimize: true
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js']
+        extensions: [
+            '.ts', '.tsx', '.js'
+        ],
+        fallback: {
+            "http": false, 
+            "browser": false,
+            "https": false,
+            "stream": false,
+            "url": false,
+            "buffer": false,
+            "timers": false
+        }
     },
     module: {
         rules: [
@@ -57,17 +68,14 @@ module.exports = {
                         loader: 'file-loader'
                     },
                 ]
-            }, 
-            {
+            }, {
                 test: /\.s[ac]ss$/i,
                 use: [
                     // Creates `style` nodes from JS strings
-                    "style-loader",
-                    {
+                    "style-loader", {
                         loader: 'css-loader',
                         options: {
-                            modules: {
-                                // use CSSModules but generate local classnames
+                            modules: { // use CSSModules but generate local classnames
                                 mode: 'local',
                                 // localIdentName: IS_DEV ? '[local]' : '[hash:base64:5]',
                                 // localIdentName: '[local]__[hash:base64:5]'
@@ -77,7 +85,7 @@ module.exports = {
                     },
                     // Compiles Sass to CSS
                     "sass-loader",
-                ],
+                ]
             },
         ]
     },
@@ -112,5 +120,7 @@ module.exports = {
         new ProvidePlugin(
             {React: 'react', ReactDOM: 'react-dom'}
         ),
+        // TODO: Not needed if not using config module with webpack. Could not get config module to work.
+        new NodePolyfillPlugin(),
     ]
 };

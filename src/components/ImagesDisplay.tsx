@@ -47,7 +47,7 @@ const ImagesDisplay: React.FC<Props> = ({images}) => {
                                 color: '#fff',
                                 display: 'flex',
                                 justifyContent: 'center',
-                                alignItems: 'center'
+                                alignItems: 'center',
                             }} 
                             >
                                 <img src={imgsrc}

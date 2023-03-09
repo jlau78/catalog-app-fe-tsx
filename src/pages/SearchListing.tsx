@@ -2,10 +2,12 @@ import React, {useState, useEffect} from "react";
 import {Routes, Route, Link, useParams} from "react-router-dom"
 import { useSearchParams } from "react-router-dom";
 import {Card} from "@mui/material"
-import SearchListingRow from "./SearchListingRow";
-import {getItems} from "./../API"
+import SearchListingRow from "../components/SearchListingRow";
+import Pagination from "./../components/Pagination" 
+import {getItems, getItemsByQuery} from "../API"
 
-import {useStyles} from './../App'
+import {useStyles} from '../App'
+
 
 export default function ItemListing() {
     const styles = useStyles()
@@ -13,27 +15,41 @@ export default function ItemListing() {
     const [items, setItems] = useState < IItem[] > ([])
 
     let [searchParams, setSearchParams] = useSearchParams()
-    let [pagesize, setPageSize] = useState<number>(10)
     let [searchTerm, setSearchTerm] = useState("")
 
-    const queryParams = new URLSearchParams(window.location.search)
+    // const queryParams = new URLSearchParams(window.location.search)
+    const queryParam = searchParams.get('query')
     const pageParam = searchParams.get('page')
     const searchParam = searchParams.get('searchterm')
+    const pageSizeParam = searchParams.get('pageSize')
+    const query = queryParam ? queryParam : ''
     const curpage = pageParam ? Number(pageParam) : 1
-    // const pagesize = 10
     const totalpages = items.length
+    const curPageSize = pageSizeParam ? Number(pageSizeParam) : 10
+
+    let [pagesize, setPageSize] = useState<number>(curPageSize)
 
     useEffect(() => {
-        handleGetItems()
+        handleGetItems(query)
     }, []);
 
-    const handleGetItems = () => {
-        getItems().then(({status, data}) => {
-            if (status !== 200) {
-                throw new Error("Error. Failed to getItems");
-            }
-            setItems(data.items)
-        }).catch((err) => console.error(err))
+    function handleGetItems(query: string) {
+        console.log(`Search for items with query:${query}`)
+        if (queryParam === undefined ) {
+            getItems().then(({status, data}) => {
+                if (status !== 200) {
+                    throw new Error("Error. Failed to getItems");
+                }
+                setItems(data.items)
+            }).catch((err) => console.error(err))
+        } else {
+            getItemsByQuery(query).then( ({status, data}) => {
+                if (status !== 200) {
+                    throw new Error(`Error. Failed to getItems for query:${query}`)
+                }
+                setItems(data.items)
+            })
+        }
     }
 
     const onPagesizeChange = (event) => {
@@ -46,24 +62,17 @@ export default function ItemListing() {
 
             <div id='pagination-group'>
                 <h3 className='heading-pagination'>Search Results</h3>
-                <div id='pagination-links' className='pagignation-nav'>
-                    <span id='nav-links'>
-                        <Link to={'/listing?page=' + (curpage === 1 ? 1 :curpage - 1)}>Previous</Link> ... 
-                        <Link to={'/listing?page=' + (curpage === (Math.round(items.length/pagesize))? curpage : curpage + 1)}>
-                            Next
-                        </Link>
-                    </span>
-                    <span id='pagination-page-size'>
+
+                <Pagination curPage={curpage} pageSize={pagesize} totalSize={totalpages} />
+                <div id="pagination-page-size">
                         Page size: 
-                        <select onChange={onPagesizeChange} className='form-select'>
+                        <select onChange={onPagesizeChange} className='form-select' id="page-size-select">
                             <option value="10">10</option>
                             <option value="30">30</option>
                             <option value="100">100</option>
                         </select>
-                    </span>
-                    <p>Page {curpage} of {Math.round(items.length / pagesize)} 
-                    , Displaying items: {curpage * pagesize}</p>
                 </div>
+
             </div>
             <div className={styles.cardListingContainer}>
             {
@@ -73,7 +82,6 @@ export default function ItemListing() {
                             idx={idx + pagesize} />
                     </>
                 ))
-
             } 
             </div>
 

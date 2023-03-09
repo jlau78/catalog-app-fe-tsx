@@ -35,6 +35,13 @@ img.thumbnailImg {
     height: auto;
     display: block;
     overflow: visible;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: solid 5px transparent;
+}
+
+img.thumbnailImg:hover {
+  border-color: green;
 }
 
 div.cardListingContainer {
