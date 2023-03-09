@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { URLSearchParams } from "url";
-import {getItem} from "./../API"
+import {getItem} from "../API"
 import {Link, useParams} from "react-router-dom"
-import ItemAttributes1 from "./ItemAttributes1";
-import ImagesDisplay from './ImagesDisplay';
+import ItemAttributes1 from "../components/ItemAttributes1";
+import ImagesDisplay from '../components/ImagesDisplay';
 
 // const ItemDetails: React.FC = () => {
 export default function ItemDetails() {

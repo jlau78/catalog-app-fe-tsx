@@ -1,67 +1,85 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
 }
 
 h3 {
-  font-size: 1rem;
-  font-weight: 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 1.2rem;
 }
 
 div.listing-content {
-  border: 1 1 red;
-  border-top: solid 2px green ;
-  flex-grow: initial;
-  flex-wrap: wrap;
-  max-width: 400px;
-  max-height: 40%;
+    border: 1 1 red;
+    border-top: solid 2px green;
+    flex-grow: initial;
+    flex-wrap: wrap;
+    max-width: 400px;
+    max-height: 40%;
 }
 
 a {
-  color:brown;
+    color: brown;
 }
 
-.Card--thumbnail__img {
-  max-width: 50px;
-  max-height: 50px;
+img.thumbnailImg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: solid 5px transparent;
 }
+
+img.thumbnailImg:hover {
+  border-color: green;
+}
+
+div.cardListingContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 8px;
+    margin-right: 8px;
+    max-width: 1200px;
+    margin-bottom: 16px;
+    max-width: 750px;
+    max-height: 700px;
+}
+
+div.cardListingRowItem {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: calc(33.3333333333% - 16px);
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+div.listingContainer {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
 
 .Card--text__heading {
-  font-size: large;
-  font-style: normal;
+    font-size: large;
+    font-style: normal;
 }
 
 .Card--text__content {
-  font-size: medium;
-  font-style: normal;
-}
-
-.Card--container {
-  max-width: 350px;
-  max-height: 500px;
-}
-
-.Listing--container {
-  width: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items:center;
-  margin-left: 2em;
-  margin-right: 2em;
-}
-
-.search_form_box {
-
-}
-
-.Card--item-container {
+    font-size: medium;
+    font-style: normal;
 }

@@ -1,14 +1,13 @@
-import { hot } from "react-hot-loader"
 import * as React from 'react';
 import {BrowserRouter, Routes, Route, Link, useParams} from 'react-router-dom';
-import './App.css';
 import "./assets/main.module.scss"
 
-import SearchItem from "./components/SearchItem"
-import AppRoutes from "././routes/Routes"
-import ItemDetails from './components/ItemDetails';
-import ItemListing from './components/SearchListing';
+import SearchItem from "./components/SearchItemForm"
+import ItemDetails from './pages/ItemDetails';
+import ItemListing from './pages/SearchListing';
 import About from './components/About';
+
+import styles from './assets/main.module.scss'
 
 
 const App = () => {
@@ -40,5 +39,8 @@ const App = () => {
     )
 }
 
+export function useStyles() {
+  return styles;
+}
+
 export default App
-// export default hot(module)(App)

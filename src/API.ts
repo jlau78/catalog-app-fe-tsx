@@ -1,12 +1,20 @@
-import axios, {AxiosResponse} from "axios"
+import axios, {AxiosResponse} from "axios";
 
-const baseUrl: string = "http://localhost:4000"
+// TODO: Could not get config or config.json to work. Startup errors with webpack.
+// import config from "config";
+// import config from 'config.json'
+
+// const conf = require('config.json')('../config/default.json')
+
+// const apiUrl = conf.services.internal.catalog_api.url;
+// const apiUrl = config.get('services.internal.catalog-api.url')
+const apiUrl: string = "http://localhost:4000"
 
 export const getItems = async(): Promise<AxiosResponse<ApiDataType>> => {
 
     try {
         const items: AxiosResponse<ApiDataType> = await axios.get(
-            baseUrl + "/items"
+            apiUrl + "/items"
         )
         return items
 
@@ -17,10 +25,25 @@ export const getItems = async(): Promise<AxiosResponse<ApiDataType>> => {
     
 }
 
+export const getItemsByQuery = async(query: string): Promise<AxiosResponse<ApiDataType>> => {
+    try {
+        const items: AxiosResponse<ApiDataType> = await axios.get(
+            apiUrl + `/items/${query}`
+        )
+        console.log(`Get item by query:${query}: items:${items}`)
+
+        return items
+
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
 export const getItem = async(itemId: string | any): Promise<AxiosResponse<ApiDataType>> => {
     try {
         const item: AxiosResponse<ApiDataType> = await axios.get(
-            baseUrl + `/item/${itemId}`);
+            apiUrl + `/item/${itemId}`);
         
         return item;
 
@@ -44,7 +67,7 @@ export const addItem =async(formData: IItem): Promise<AxiosResponse<ApiDataType>
         }
 
         const saveItem: AxiosResponse<ApiDataType> = await axios.post(
-            baseUrl + "/add-item",
+            apiUrl + "/add-item",
             item
         )
         
@@ -71,7 +94,7 @@ export const updateItem = async(item: IItem): Promise<AxiosResponse<ApiDataType>
 
 
         const updatedItem: AxiosResponse<ApiDataType> = await axios.put(
-            `${baseUrl}/update-item/${item.itemId}`,
+            `${apiUrl}/update-item/${item.itemId}`,
             itemToUpdate
         )
         return updatedItem
@@ -85,7 +108,7 @@ export const updateItem = async(item: IItem): Promise<AxiosResponse<ApiDataType>
 export const deleteItem = async(itemId: string): Promise<AxiosResponse<ApiDataType>> => {
     try {
         const deletedItem: AxiosResponse<ApiDataType> = await axios.delete(
-            `${baseUrl}/delete-item/${itemId}`
+            `${apiUrl}/delete-item/${itemId}`
         )
         return deletedItem;
 
