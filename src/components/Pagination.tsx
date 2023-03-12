@@ -1,20 +1,30 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import {Link, useSearchParams} from "react-router-dom"
 import {useStyles} from "./../App"
 
 type Props = {
     curPage: number,
     pageSize: number,
-    totalSize: number,
+    totalItems: number,
 }
 
-const Pagination: React.FC<Props> = ({curPage, pageSize, totalSize}) => {
+const Pagination: React.FC<Props> = ({curPage, pageSize, totalItems: totalSize}) => {
 
     const styles = useStyles()
+    const url = window.location.href
+    const [searchParams, setSearchParams] = useSearchParams()
+    const newParams : URLSearchParams = new URLSearchParams()
 
-    const createPageNums = (itemsSize) => {
+    const onClick= (event) => {
+        const {tag, value} = event?.target
+        console.log(`target:${event?.target}, tag:${event.name}, value:${event.href}`)
+        newParams.set("page", event?.name)
+        setSearchParams(newParams)
+    }
+
+    const createPageNums = (itemsTotal) => {
         let elems = []
-        let totalPages = Math.round(itemsSize/pageSize)
+        let totalPages = Math.round(itemsTotal/pageSize)
         let start = curPage
         let max = curPage + 5 < totalPages ? curPage + 5 : curPage
         for(let i=start; i < max; i++){
@@ -25,7 +35,9 @@ const Pagination: React.FC<Props> = ({curPage, pageSize, totalSize}) => {
                 marginLeft: '5px',
                 marginRight: '5px'
             }}> 
-                <a href={`./listing?page=${i}`}>{i}</a> 
+                    <a name={i.toString()} href="javascript:" onClick={onClick}>
+                        {i}
+                    </a>
             </li>)
         }
         elems.push(<li>....</li>) 

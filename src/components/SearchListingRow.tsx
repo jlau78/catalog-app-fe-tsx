@@ -15,10 +15,10 @@ const SearchListingRow: React.FC<Props> = ({item, idx}) => {
 
     return (
         <React.Fragment key={item.itemId}>
-            <div className={styles.cardListingRowItem} key={item.itemId}>
+            <div id={`item-${item.itemId}`} className={styles.cardListingRowItem} key={item.itemId}>
                 <span>{item.name}</span>
                 <div className="Card--item-details" id={item.itemId}>
-                    <div className="Card--text__heading" id="short-desc">
+                    <div className="rowHeadingBox" id="short-desc">
                         <h4>Description: {item.description}</h4>
                         <p id="price">Price: {item.price}</p>
                         <p>

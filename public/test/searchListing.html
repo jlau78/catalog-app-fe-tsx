@@ -1,219 +1,407 @@
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Catalog</title>
+        <script defer="" src="main.js"></script>
+        <script defer="" src="remoteEntry.js"></script>
+        <style id="OTYwMDAwMDE5OTk5OTUx"></style>
+        <style>
+            body {
+                margin: 0;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/index.css">
-  <title>Search Listing</title>
-  <script defer="" src="main.js"></script>
-  <script defer="" src="remoteEntry.js"></script>
-  <style id="MTA0MDAwMDAxOTk5OTk0Nw=="></style>
-  <style>.App {
-  text-align: center;
-}
+            code {
+                font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+            }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+            h3 {
+                font-size: 1.2rem;
+                font-weight: 1.2rem;
+            }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+            a {
+                color: brown;
+            }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+            div.cardListingBox {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin-left: 8px;
+                margin-right: 8px;
+                max-width: 1200px;
+                margin-bottom: 16px;
+                max-width: 750px;
+                max-height: 700px;
+            }
 
-.App-link {
-  color: #61dafb;
-}
+            .mainPageBox {
+                display: flex;
+                flex-direction: row;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-</style>
-</head>
+            .leftNav {
+                width: 250px;
+            }
 
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root">
-    <div id="main">
-      <div>
-        <div>
-          <h4>Search</h4>
-          <div id="search_form_box">
-            <form id="area_search_form" action="/listing"><label for="searchbox" class="box-label">Area: </label><input id="searchbox" name="searchbox" class="box-input" type="text" value=""><button id="search_button" class="Card--button" type="submit">Search</button></form>
-          </div>
+            .pageListingBox {
+                display: inline-block;
+            }
+
+            div.cardListingRowItem {
+                flex-grow: 0;
+                flex-shrink: 0;
+                width: calc(33.3333333333% - 16px);
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+
+            div.listingBox {
+                width: 90%;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                margin-left: 2em;
+                margin-right: 2em;
+            }
+
+            .rowHeadingBox {
+                font-size: large;
+                font-style: normal;
+            }
+
+            .searchFormBox {
+                border-style: solid;
+                border-width: 1px 1px 2px 1px;
+                margin: 5px;
+                background-color: rgb(221, 230, 230);
+            }
+
+            img.thumbnailImg {
+                width: 100%;
+                height: auto;
+                display: block;
+                overflow: visible;
+            }
+
+            button.genericButton {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                align-items: center;
+                box-shadow: 0 black black;
+                background-color: rgb(188, 226, 200);
+                min-width: 120px;
+                min-height: 32px;
+            }
+            /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hc3NldHMvX2RlZmF1bHQudGhlbWUuc2NzcyIsIndlYnBhY2s6Ly8uL3NyYy9hc3NldHMvbWFpbi5tb2R1bGUuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFNBQUE7RUFDQSw4SkFBQTtFQUdBLG1DQUFBO0VBQ0Esa0NBQUE7QUNESjs7QURJQTtFQUNJLCtFQUFBO0FDREo7O0FES0E7RUFDSSxpQkFBQTtFQUNBLG1CQUFBO0FDRko7O0FES0E7RUFDSSxZQUFBO0FDRko7O0FESUE7RUFDSSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxpQkFBQTtFQUNBLGlCQUFBO0VBQ0EsbUJBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0FDREo7O0FESUE7RUFDSSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0FDREo7O0FESUE7RUFDSSxZQUFBO0FDREo7O0FETUE7RUFDSSxxQkFBQTtBQ0hKOztBRE1BO0VBQ0ksWUFBQTtFQUNBLGNBQUE7RUFDQSxrQ0FBQTtFQUNBLGdCQUFBO0VBQ0EsaUJBQUE7QUNISjs7QURNQTtFQUNJLFVBQUE7RUFDQSxhQUFBO0VBQ0EsZUFBQTtFQUNBLG1CQUFBO0VBQ0EsZ0JBQUE7RUFDQSxpQkFBQTtBQ0hKOztBRFFBO0VBQ0ksZ0JBQUE7RUFDQSxrQkFBQTtBQ0xKOztBRFNBO0VBQ0ksbUJBQUE7RUFDQSw2QkFBQTtFQUNBLGVBQUE7RUFDQSxvQ0FBQTtBQ05KOztBRFlBO0VBQ0ksV0FBQTtFQUNBLFlBQUE7RUFDQSxjQUFBO0VBQ0EsaUJBQUE7QUNUSjs7QURhQTtFQUNJLGdEQUFBO0VBQ0EsbUJBQUE7RUFDQSw0QkFBQTtFQUNBLG9DQUFBO0VBQ0EsZ0JBQUE7RUFDQSxnQkFBQTtBQ1ZKIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XHJcbiAgICBtYXJnaW46IDA7XHJcbiAgICBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAnU2Vnb2UgVUknLCAnUm9ib3RvJywgJ094eWdlbicsXHJcbiAgICAgICAgJ1VidW50dScsICdDYW50YXJlbGwnLCAnRmlyYSBTYW5zJywgJ0Ryb2lkIFNhbnMnLCAnSGVsdmV0aWNhIE5ldWUnLFxyXG4gICAgICAgIHNhbnMtc2VyaWY7XHJcbiAgICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDtcclxuICAgIC1tb3otb3N4LWZvbnQtc21vb3RoaW5nOiBncmF5c2NhbGU7XHJcbn1cclxuXHJcbmNvZGUge1xyXG4gICAgZm9udC1mYW1pbHk6IHNvdXJjZS1jb2RlLXBybywgTWVubG8sIE1vbmFjbywgQ29uc29sYXMsICdDb3VyaWVyIE5ldycsXHJcbiAgICAgICAgbW9ub3NwYWNlO1xyXG59XHJcblxyXG5oMyB7XHJcbiAgICBmb250LXNpemU6IDEuMnJlbTtcclxuICAgIGZvbnQtd2VpZ2h0OiAxLjJyZW07XHJcbn1cclxuXHJcbmEge1xyXG4gICAgY29sb3I6IGJyb3duO1xyXG59XHJcbmRpdi5jYXJkTGlzdGluZ0JveCB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICAgIGZsZXgtd3JhcDogd3JhcDtcclxuICAgIG1hcmdpbi1sZWZ0OiA4cHg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDhweDtcclxuICAgIG1heC13aWR0aDogMTIwMHB4O1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMTZweDtcclxuICAgIG1heC13aWR0aDogNzUwcHg7XHJcbiAgICBtYXgtaGVpZ2h0OiA3MDBweDtcclxufVxyXG5cclxuLm1haW5QYWdlQm94IHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gICAgbWFyZ2luLWxlZnQ6IDVweDtcclxuICAgIG1hcmdpbi1yaWdodDogNXB4XHJcbn1cclxuXHJcbi5sZWZ0TmF2IHtcclxuICAgIHdpZHRoOiAyNTBweDtcclxufVxyXG5cclxuXHJcbi8vIFNlYXJjaCBSZXN1bHQgTGlzdGluZ1xyXG4ucGFnZUxpc3RpbmdCb3gge1xyXG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG59XHJcblxyXG5kaXYuY2FyZExpc3RpbmdSb3dJdGVtIHtcclxuICAgIGZsZXgtZ3JvdzogMDtcclxuICAgIGZsZXgtc2hyaW5rOiAwO1xyXG4gICAgd2lkdGg6IGNhbGMoMzMuMzMzMzMzMzMzMyUgLSAxNnB4KTtcclxuICAgIG1hcmdpbi1sZWZ0OiA4cHg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDhweDtcclxufVxyXG5cclxuZGl2Lmxpc3RpbmdCb3gge1xyXG4gICAgd2lkdGg6IDkwJTtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LXdyYXA6IHdyYXA7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgbWFyZ2luLWxlZnQ6IDJlbTtcclxuICAgIG1hcmdpbi1yaWdodDogMmVtO1xyXG59XHJcblxyXG5cclxuLy8gUmVzdWx0IFJvd1xyXG4ucm93SGVhZGluZ0JveCB7XHJcbiAgICBmb250LXNpemU6IGxhcmdlO1xyXG4gICAgZm9udC1zdHlsZTogbm9ybWFsO1xyXG59XHJcblxyXG4vLyBsZWZ0IE5hdiBTZWFyY2ggRm9ybVxyXG4uc2VhcmNoRm9ybUJveCB7XHJcbiAgICBib3JkZXItc3R5bGU6IHNvbGlkO1xyXG4gICAgYm9yZGVyLXdpZHRoOiAxcHggMXB4IDJweCAxcHg7XHJcbiAgICBtYXJnaW46IDVweCA1cHg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjIxLCAyMzAsIDIzMCk7XHJcbn1cclxuXHJcbi8vIENvbXBvbmVudHNcclxuXHJcbi8vIEltYWdlc1xyXG5pbWcudGh1bWJuYWlsSW1nIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgaGVpZ2h0OiBhdXRvO1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICBvdmVyZmxvdzogdmlzaWJsZTtcclxufVxyXG5cclxuLy8gQnV0dG9uc1xyXG5idXR0b24uZ2VuZXJpY0J1dHRvbiB7XHJcbiAgICBmb250LWZhbWlseTogVmVyZGFuYSwgR2VuZXZhLCBUYWhvbWEsIHNhbnMtc2VyaWY7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgYm94LXNoYWRvdzogMGNhcCBibGFjayBmYWRlLW91dCgkY29sb3I6ICMwMDAwMDAsICRhbW91bnQ6IDApO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDE4OCwgMjI2LCAyMDApO1xyXG4gICAgbWluLXdpZHRoOiAxMjBweDtcclxuICAgIG1pbi1oZWlnaHQ6IDMycHg7XHJcblxyXG59IiwiYm9keSB7XG4gIG1hcmdpbjogMDtcbiAgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgXCJTZWdvZSBVSVwiLCBcIlJvYm90b1wiLCBcIk94eWdlblwiLCBcIlVidW50dVwiLCBcIkNhbnRhcmVsbFwiLCBcIkZpcmEgU2Fuc1wiLCBcIkRyb2lkIFNhbnNcIiwgXCJIZWx2ZXRpY2EgTmV1ZVwiLCBzYW5zLXNlcmlmO1xuICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDtcbiAgLW1vei1vc3gtZm9udC1zbW9vdGhpbmc6IGdyYXlzY2FsZTtcbn1cblxuY29kZSB7XG4gIGZvbnQtZmFtaWx5OiBzb3VyY2UtY29kZS1wcm8sIE1lbmxvLCBNb25hY28sIENvbnNvbGFzLCBcIkNvdXJpZXIgTmV3XCIsIG1vbm9zcGFjZTtcbn1cblxuaDMge1xuICBmb250LXNpemU6IDEuMnJlbTtcbiAgZm9udC13ZWlnaHQ6IDEuMnJlbTtcbn1cblxuYSB7XG4gIGNvbG9yOiBicm93bjtcbn1cblxuZGl2LmNhcmRMaXN0aW5nQm94IHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgZmxleC13cmFwOiB3cmFwO1xuICBtYXJnaW4tbGVmdDogOHB4O1xuICBtYXJnaW4tcmlnaHQ6IDhweDtcbiAgbWF4LXdpZHRoOiAxMjAwcHg7XG4gIG1hcmdpbi1ib3R0b206IDE2cHg7XG4gIG1heC13aWR0aDogNzUwcHg7XG4gIG1heC1oZWlnaHQ6IDcwMHB4O1xufVxuXG4ubWFpblBhZ2VCb3gge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICBtYXJnaW4tbGVmdDogNXB4O1xuICBtYXJnaW4tcmlnaHQ6IDVweDtcbn1cblxuLmxlZnROYXYge1xuICB3aWR0aDogMjUwcHg7XG59XG5cbi5wYWdlTGlzdGluZ0JveCB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbn1cblxuZGl2LmNhcmRMaXN0aW5nUm93SXRlbSB7XG4gIGZsZXgtZ3JvdzogMDtcbiAgZmxleC1zaHJpbms6IDA7XG4gIHdpZHRoOiBjYWxjKDMzLjMzMzMzMzMzMzMlIC0gMTZweCk7XG4gIG1hcmdpbi1sZWZ0OiA4cHg7XG4gIG1hcmdpbi1yaWdodDogOHB4O1xufVxuXG5kaXYubGlzdGluZ0JveCB7XG4gIHdpZHRoOiA5MCU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtd3JhcDogd3JhcDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgbWFyZ2luLWxlZnQ6IDJlbTtcbiAgbWFyZ2luLXJpZ2h0OiAyZW07XG59XG5cbi5yb3dIZWFkaW5nQm94IHtcbiAgZm9udC1zaXplOiBsYXJnZTtcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xufVxuXG4uc2VhcmNoRm9ybUJveCB7XG4gIGJvcmRlci1zdHlsZTogc29saWQ7XG4gIGJvcmRlci13aWR0aDogMXB4IDFweCAycHggMXB4O1xuICBtYXJnaW46IDVweCA1cHg7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigyMjEsIDIzMCwgMjMwKTtcbn1cblxuaW1nLnRodW1ibmFpbEltZyB7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IGF1dG87XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBvdmVyZmxvdzogdmlzaWJsZTtcbn1cblxuYnV0dG9uLmdlbmVyaWNCdXR0b24ge1xuICBmb250LWZhbWlseTogVmVyZGFuYSwgR2VuZXZhLCBUYWhvbWEsIHNhbnMtc2VyaWY7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGJveC1zaGFkb3c6IDBjYXAgYmxhY2sgYmxhY2s7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYigxODgsIDIyNiwgMjAwKTtcbiAgbWluLXdpZHRoOiAxMjBweDtcbiAgbWluLWhlaWdodDogMzJweDtcbn0iXSwic291cmNlUm9vdCI6IiJ9 */
+        </style>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root">
+            <div id="main" class="mainPageBox">
+                <div id="search-form" class="leftNav">
+                    <div class="searchFormBox">
+                        <h4>Search</h4>
+                        <div id="search_form_box">
+                            <form id="area_search_form" action="/listing" method="GET">
+                                <div>
+                                    <label class="box-label">Area:<input id="query" name="query" class="box-input" type="text" value="Holland Park"></label>
+                                </div>
+                                <div style="min-height: 20px;"></div>
+                                <div style="margin-top: 5px; margin-bottom: 5px;">
+                                    <button id="search_button" class="genericButton" type="submit">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="content">
+                    <div id="search-listing-box" class="pageListingBox">
+                        <div id="pagination-group">
+                            <h3 class="heading-pagination">Results for Holland Park</h3>
+                            <div id="pagination-links" class="pagignation-nav">
+                                <span id="nav-links">
+                                    <ul id="pagination-page-nums" style="display: flex; overflow: auto;">
+                                        <a href="/listing?page=1">Previous</a>
+                                        ...<li id="page-num" style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
+                                            <a name="1" href="javascript:">1</a>
+                                        </li>
+                                        <li id="page-num" style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
+                                            <a name="2" href="javascript:">2</a>
+                                        </li>
+                                        <li id="page-num" style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
+                                            <a name="3" href="javascript:">3</a>
+                                        </li>
+                                        <li id="page-num" style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
+                                            <a name="4" href="javascript:">4</a>
+                                        </li>
+                                        <li id="page-num" style="display: flex; justify-content: center; align-items: center; margin-left: 5px; margin-right: 5px;">
+                                            <a name="5" href="javascript:">5</a>
+                                        </li>
+                                        <li>....</li>
+                                        <li>
+                                            62</li>
+                                        <a href="/listing?page=2">Next</a>
+                                    </ul>
+                                </span>
+                                <p>Page 1 of 62, Displaying items: 10</p>
+                            </div>
+                            <div id="pagination-page-size">Page size:<select class="form-select" id="page-size-select">
+                                    <option value="10">10</option>
+                                    <option value="30">30</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="cardListingBox">
+                            <div id="item-16138808" class="cardListingRowItem">
+                                <span></span>
+                                <div class="Card--item-details" id="16138808">
+                                    <div class="rowHeadingBox" id="short-desc">
+                                        <h4>Description:
+                                        </h4>
+                                        <p id="price">Price: £1,547 pcm</p>
+                                        <p>
+                                            <a id="link-item-details" href="/item/16138808">Item id: 16138808</a>
+                                        </p>
+                                    </div>
+                                    <div class="fullDescription" id="full-desc">
+                                        <p>11 - 
+                                                                Stunning New Development In VAUXHALL - Room.Newly built 3 bedroom flat with modern fittings and furniture, building gym, dining/meeting room, lobby, and concierge.OFFER - COUPLE R</p>
+                                    </div>
+                                </div>
+                                <a id="imglink-item-details" href="/item/16138808">
+                                    <div class="Card-thumnail-box">
+                                        <div id="images-carousel">
+                                            <ul style="display: flex; overflow: auto; scroll-snap-type: x mandatory;">
+                                                <li style="background-color: rgb(255, 255, 255); font-size: 50px; width: 250px; height: 250px; flex-shrink: 0; color: rgb(255, 255, 255); display: flex; justify-content: center; align-items: center;"><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/83/87/83877701.jpg" class="thumbnailImg" alt="Main"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="item-14526037" class="cardListingRowItem">
+                                <span></span>
+                                <div class="Card--item-details" id="14526037">
+                                    <div class="rowHeadingBox" id="short-desc">
+                                        <h4>Description:
+                                        </h4>
+                                        <p id="price">Price: £850 pcm</p>
+                                        <p>
+                                            <a id="link-item-details" href="/item/14526037">Item id: 14526037</a>
+                                        </p>
+                                    </div>
+                                    <div class="fullDescription" id="full-desc">
+                                        <p>12 - 
+                                                                Bright sunny room located in Nine Elms. 5mins walk to Stockwell and Nine Elms underground station and 7mins Vauxhall underground/overground and bus station.30sec walk to bus links</p>
+                                    </div>
+                                </div>
+                                <a id="imglink-item-details" href="/item/14526037">
+                                    <div class="Card-thumnail-box">
+                                        <div id="images-carousel">
+                                            <ul style="display: flex; overflow: auto; scroll-snap-type: x mandatory;">
+                                                <li style="background-color: rgb(255, 255, 255); font-size: 50px; width: 250px; height: 250px; flex-shrink: 0; color: rgb(255, 255, 255); display: flex; justify-content: center; align-items: center;"><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/71/57/71570041.jpg" class="thumbnailImg" alt="Main"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="item-16468833" class="cardListingRowItem">
+                                <span></span>
+                                <div class="Card--item-details" id="16468833">
+                                    <div class="rowHeadingBox" id="short-desc">
+                                        <h4>Description:
+                                        </h4>
+                                        <p id="price">Price:
+                                        </p>
+                                        <p>
+                                            <a id="link-item-details" href="/item/16468833">Item id: 16468833</a>
+                                        </p>
+                                    </div>
+                                    <div class="fullDescription" id="full-desc">
+                                        <p>13 - 
+                                                                We are lucky to have this three bed available right next to Vauxhall station in a modern development with 3 large rooms and a kitchen dining area.Property consists of...1- Large M</p>
+                                    </div>
+                                </div>
+                                <a id="imglink-item-details" href="/item/16468833">
+                                    <div class="Card-thumnail-box">
+                                        <div id="images-carousel">
+                                            <ul style="display: flex; overflow: auto; scroll-snap-type: x mandatory;">
+                                                <li style="background-color: rgb(255, 255, 255); font-size: 50px; width: 250px; height: 250px; flex-shrink: 0; color: rgb(255, 255, 255); display: flex; justify-content: center; align-items: center;"><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/86/15/86156655.jpg" class="thumbnailImg" alt="Main"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="item-16529063" class="cardListingRowItem">
+                                <span></span>
+                                <div class="Card--item-details" id="16529063">
+                                    <div class="rowHeadingBox" id="short-desc">
+                                        <h4>Description:
+                                        </h4>
+                                        <p id="price">Price: £2,200 pcm</p>
+                                        <p>
+                                            <a id="link-item-details" href="/item/16529063">Item id: 16529063</a>
+                                        </p>
+                                    </div>
+                                    <div class="fullDescription" id="full-desc">
+                                        <p>14 - 
+                                                                This sunny spacious one bedroom flat is located in Zone 1, 1 minute from the river, in a new upmarket and safe area near the new US Embassy. It is extremely well connected, and 10</p>
+                                    </div>
+                                </div>
+                                <a id="imglink-item-details" href="/item/16529063">
+                                    <div class="Card-thumnail-box">
+                                        <div id="images-carousel">
+                                            <ul style="display: flex; overflow: auto; scroll-snap-type: x mandatory;">
+                                                <li style="background-color: rgb(255, 255, 255); font-size: 50px; width: 250px; height: 250px; flex-shrink: 0; color: rgb(255, 255, 255); display: flex; justify-content: center; align-items: center;"><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/86/56/86563249.jpg" class="thumbnailImg" alt="Main"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="item-15985004" class="cardListingRowItem">
+                                <span></span>
+                                <div class="Card--item-details" id="15985004">
+                                    <div class="rowHeadingBox" id="short-desc">
+                                        <h4>Description:
+                                        </h4>
+                                        <p id="price">Price: £1,250 pcm</p>
+                                        <p>
+                                            <a id="link-item-details" href="/item/15985004">Item id: 15985004</a>
+                                        </p>
+                                    </div>
+                                    <div class="fullDescription" id="full-desc">
+                                        <p>15 - 
+                                                                Part furnished 2 bed top floor flat in a Victorian terrace house on Queenstown road, Battersea available for rent. The flat is in an ideal location for the regenerated Battersea P</p>
+                                    </div>
+                                </div>
+                                <a id="imglink-item-details" href="/item/15985004">
+                                    <div class="Card-thumnail-box">
+                                        <div id="images-carousel">
+                                            <ul style="display: flex; overflow: auto; scroll-snap-type: x mandatory;">
+                                                <li style="background-color: rgb(255, 255, 255); font-size: 50px; width: 250px; height: 250px; flex-shrink: 0; color: rgb(255, 255, 255); display: flex; justify-content: center; align-items: center;"><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/82/71/82710490.jpg" class="thumbnailImg" alt="Main"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="item-15850007" class="cardListingRowItem">
+                                <span></span>
+                                <div class="Card--item-details" id="15850007">
+                                    <div class="rowHeadingBox" id="short-desc">
+                                        <h4>Description:
+                                        </h4>
+                                        <p id="price">Price: £870 pcm</p>
+                                        <p>
+                                            <a id="link-item-details" href="/item/15850007">Item id: 15850007</a>
+                                        </p>
+                                    </div>
+                                    <div class="fullDescription" id="full-desc">
+                                        <p>16 - 
+                                                                Available for Rent is this great South facing, airy, bright and clean spacious Double Bedroom, including access to a balcony! EXCELLENT LOCATION!Room will be available from JAN  2</p>
+                                    </div>
+                                </div>
+                                <a id="imglink-item-details" href="/item/15850007">
+                                    <div class="Card-thumnail-box">
+                                        <div id="images-carousel">
+                                            <ul style="display: flex; overflow: auto; scroll-snap-type: x mandatory;">
+                                                <li style="background-color: rgb(255, 255, 255); font-size: 50px; width: 250px; height: 250px; flex-shrink: 0; color: rgb(255, 255, 255); display: flex; justify-content: center; align-items: center;"><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/81/72/81720901.jpg" class="thumbnailImg" alt="Main"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="item-16533301" class="cardListingRowItem">
+                                <span></span>
+                                <div class="Card--item-details" id="16533301">
+                                    <div class="rowHeadingBox" id="short-desc">
+                                        <h4>Description:
+                                        </h4>
+                                        <p id="price">Price: £1,200 pcm</p>
+                                        <p>
+                                            <a id="link-item-details" href="/item/16533301">Item id: 16533301</a>
+                                        </p>
+                                    </div>
+                                    <div class="fullDescription" id="full-desc">
+                                        <p>17 - 
+                                                                ðï¸3 min walk from Nine Elms Stationðï¸ ALL BILLS INCLUDED (also cleaning in the common areas every 2 weeks)ðï¸ shares bathroom with friendly, amazing and clean girlð</p>
+                                    </div>
+                                </div>
+                                <a id="imglink-item-details" href="/item/16533301">
+                                    <div class="Card-thumnail-box">
+                                        <div id="images-carousel">
+                                            <ul style="display: flex; overflow: auto; scroll-snap-type: x mandatory;">
+                                                <li style="background-color: rgb(255, 255, 255); font-size: 50px; width: 250px; height: 250px; flex-shrink: 0; color: rgb(255, 255, 255); display: flex; justify-content: center; align-items: center;"><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/86/59/86593771.jpg" class="thumbnailImg" alt="Main"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="item-16531421" class="cardListingRowItem">
+                                <span></span>
+                                <div class="Card--item-details" id="16531421">
+                                    <div class="rowHeadingBox" id="short-desc">
+                                        <h4>Description:
+                                        </h4>
+                                        <p id="price">Price:
+                                        </p>
+                                        <p>
+                                            <a id="link-item-details" href="/item/16531421">Item id: 16531421</a>
+                                        </p>
+                                    </div>
+                                    <div class="fullDescription" id="full-desc">
+                                        <p>18 - 
+                                                                Beautifully presented and cleverly designed One-Bedroom flat with high ceilings, and sash windows positioned on the raised ground floor of a period conversion on a tree-lined stre</p>
+                                    </div>
+                                </div>
+                                <a id="imglink-item-details" href="/item/16531421">
+                                    <div class="Card-thumnail-box">
+                                        <div id="images-carousel">
+                                            <ul style="display: flex; overflow: auto; scroll-snap-type: x mandatory;">
+                                                <li style="background-color: rgb(255, 255, 255); font-size: 50px; width: 250px; height: 250px; flex-shrink: 0; color: rgb(255, 255, 255); display: flex; justify-content: center; align-items: center;"><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/86/58/86580032.jpg" class="thumbnailImg" alt="Main"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="item-16229429" class="cardListingRowItem">
+                                <span></span>
+                                <div class="Card--item-details" id="16229429">
+                                    <div class="rowHeadingBox" id="short-desc">
+                                        <h4>Description:
+                                        </h4>
+                                        <p id="price">Price: £1,000 pcm</p>
+                                        <p>
+                                            <a id="link-item-details" href="/item/16229429">Item id: 16229429</a>
+                                        </p>
+                                    </div>
+                                    <div class="fullDescription" id="full-desc">
+                                        <p>19 - 
+                                                                Hello!I am subletting my wonderful double bedroom in the heart of West Kensington from February while I go off travelling for a few months.I have been calling this flat my home fo</p>
+                                    </div>
+                                </div>
+                                <a id="imglink-item-details" href="/item/16229429">
+                                    <div class="Card-thumnail-box">
+                                        <div id="images-carousel">
+                                            <ul style="display: flex; overflow: auto; scroll-snap-type: x mandatory;">
+                                                <li style="background-color: rgb(255, 255, 255); font-size: 50px; width: 250px; height: 250px; flex-shrink: 0; color: rgb(255, 255, 255); display: flex; justify-content: center; align-items: center;"><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/86/57/86577700.jpg" class="thumbnailImg" alt="Main"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div id="content">
-        <div id="search-listing-container">
-          <div id="pagination-group">
-            <h3 class="heading-pagination">Search Results</h3>
-            <div id="pagination-links" class="pagignation-nav"><span id="nav-links"><a href="/listing?page=1">Previous</a> ...<a href="/listing?page=2">Next</a></span><span id="pagination-page-size">Page size:<select class="form-select">
-                  <option value="10">10</option>
-                  <option value="30">30</option>
-                  <option value="100">100</option>
-                </select></span>
-              <p>Page 1 of 62, Displaying items: 10</p>
-            </div>
-          </div>
-          <div class="cardListingContainer">
-            <div class="cardListingRowItem"><span></span>
-              <div class="Card--item-details" id="16138808">
-                <div class="Card--text__heading" id="short-desc">
-                  <h4>Description: </h4>
-                  <p id="price">Price: £1,547 pcm</p>
-                  <p><a id="link-item-details" href="/item/16138808">Item id: 16138808</a></p>
-                </div>
-                <div class="fullDescription" id="full-desc">
-                  <p>11 -
-                    Stunning New Development In VAUXHALL - Room.Newly built 3 bedroom flat with modern fittings and furniture, building gym, dining/meeting room, lobby, and concierge.OFFER - COUPLE R</p>
-                </div>
-              </div><a id="imglink-item-details" href="/item/16138808">
-                <div class="Card-thumnail-container"><span><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/83/87/83877701.jpg" class="thumbnailImg" alt="Main"></span></div>
-              </a>
-            </div>
-            <div class="cardListingRowItem"><span></span>
-              <div class="Card--item-details" id="14526037">
-                <div class="Card--text__heading" id="short-desc">
-                  <h4>Description: </h4>
-                  <p id="price">Price: £850 pcm</p>
-                  <p><a id="link-item-details" href="/item/14526037">Item id: 14526037</a></p>
-                </div>
-                <div class="fullDescription" id="full-desc">
-                  <p>12 -
-                    Bright sunny room located in Nine Elms. 5mins walk to Stockwell and Nine Elms underground station and 7mins Vauxhall underground/overground and bus station.30sec walk to bus links</p>
-                </div>
-              </div><a id="imglink-item-details" href="/item/14526037">
-                <div class="Card-thumnail-container"><span><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/71/57/71570041.jpg" class="thumbnailImg" alt="Main"></span></div>
-              </a>
-            </div>
-            <div class="cardListingRowItem"><span></span>
-              <div class="Card--item-details" id="16468833">
-                <div class="Card--text__heading" id="short-desc">
-                  <h4>Description: </h4>
-                  <p id="price">Price: </p>
-                  <p><a id="link-item-details" href="/item/16468833">Item id: 16468833</a></p>
-                </div>
-                <div class="fullDescription" id="full-desc">
-                  <p>13 -
-                    We are lucky to have this three bed available right next to Vauxhall station in a modern development with 3 large rooms and a kitchen dining area.Property consists of...1- Large M</p>
-                </div>
-              </div><a id="imglink-item-details" href="/item/16468833">
-                <div class="Card-thumnail-container"><span><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/86/15/86156655.jpg" class="thumbnailImg" alt="Main"></span></div>
-              </a>
-            </div>
-            <div class="cardListingRowItem"><span></span>
-              <div class="Card--item-details" id="16529063">
-                <div class="Card--text__heading" id="short-desc">
-                  <h4>Description: </h4>
-                  <p id="price">Price: £2,200 pcm</p>
-                  <p><a id="link-item-details" href="/item/16529063">Item id: 16529063</a></p>
-                </div>
-                <div class="fullDescription" id="full-desc">
-                  <p>14 -
-                    This sunny spacious one bedroom flat is located in Zone 1, 1 minute from the river, in a new upmarket and safe area near the new US Embassy. It is extremely well connected, and 10</p>
-                </div>
-              </div><a id="imglink-item-details" href="/item/16529063">
-                <div class="Card-thumnail-container"><span><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/86/56/86563249.jpg" class="thumbnailImg" alt="Main"></span></div>
-              </a>
-            </div>
-            <div class="cardListingRowItem"><span></span>
-              <div class="Card--item-details" id="15985004">
-                <div class="Card--text__heading" id="short-desc">
-                  <h4>Description: </h4>
-                  <p id="price">Price: £1,250 pcm</p>
-                  <p><a id="link-item-details" href="/item/15985004">Item id: 15985004</a></p>
-                </div>
-                <div class="fullDescription" id="full-desc">
-                  <p>15 -
-                    Part furnished 2 bed top floor flat in a Victorian terrace house on Queenstown road, Battersea available for rent. The flat is in an ideal location for the regenerated Battersea P</p>
-                </div>
-              </div><a id="imglink-item-details" href="/item/15985004">
-                <div class="Card-thumnail-container"><span><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/82/71/82710490.jpg" class="thumbnailImg" alt="Main"></span></div>
-              </a>
-            </div>
-            <div class="cardListingRowItem"><span></span>
-              <div class="Card--item-details" id="15850007">
-                <div class="Card--text__heading" id="short-desc">
-                  <h4>Description: </h4>
-                  <p id="price">Price: £870 pcm</p>
-                  <p><a id="link-item-details" href="/item/15850007">Item id: 15850007</a></p>
-                </div>
-                <div class="fullDescription" id="full-desc">
-                  <p>16 -
-                    Available for Rent is this great South facing, airy, bright and clean spacious Double Bedroom, including access to a balcony! EXCELLENT LOCATION!Room will be available from JAN 2</p>
-                </div>
-              </div><a id="imglink-item-details" href="/item/15850007">
-                <div class="Card-thumnail-container"><span><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/81/72/81720901.jpg" class="thumbnailImg" alt="Main"></span></div>
-              </a>
-            </div>
-            <div class="cardListingRowItem"><span></span>
-              <div class="Card--item-details" id="16533301">
-                <div class="Card--text__heading" id="short-desc">
-                  <h4>Description: </h4>
-                  <p id="price">Price: £1,200 pcm</p>
-                  <p><a id="link-item-details" href="/item/16533301">Item id: 16533301</a></p>
-                </div>
-                <div class="fullDescription" id="full-desc">
-                  <p>17 -
-                    ðï¸3 min walk from Nine Elms Stationðï¸ ALL BILLS INCLUDED (also cleaning in the common areas every 2 weeks)ðï¸ shares bathroom with friendly, amazing and clean girlð</p>
-                </div>
-              </div><a id="imglink-item-details" href="/item/16533301">
-                <div class="Card-thumnail-container"><span><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/86/59/86593771.jpg" class="thumbnailImg" alt="Main"></span></div>
-              </a>
-            </div>
-            <div class="cardListingRowItem"><span></span>
-              <div class="Card--item-details" id="16531421">
-                <div class="Card--text__heading" id="short-desc">
-                  <h4>Description: </h4>
-                  <p id="price">Price: </p>
-                  <p><a id="link-item-details" href="/item/16531421">Item id: 16531421</a></p>
-                </div>
-                <div class="fullDescription" id="full-desc">
-                  <p>18 -
-                    Beautifully presented and cleverly designed One-Bedroom flat with high ceilings, and sash windows positioned on the raised ground floor of a period conversion on a tree-lined stre</p>
-                </div>
-              </div><a id="imglink-item-details" href="/item/16531421">
-                <div class="Card-thumnail-container"><span><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/86/58/86580032.jpg" class="thumbnailImg" alt="Main"></span></div>
-              </a>
-            </div>
-            <div class="cardListingRowItem"><span></span>
-              <div class="Card--item-details" id="16229429">
-                <div class="Card--text__heading" id="short-desc">
-                  <h4>Description: </h4>
-                  <p id="price">Price: £1,000 pcm</p>
-                  <p><a id="link-item-details" href="/item/16229429">Item id: 16229429</a></p>
-                </div>
-                <div class="fullDescription" id="full-desc">
-                  <p>19 -
-                    Hello!I am subletting my wonderful double bedroom in the heart of West Kensington from February while I go off travelling for a few months.I have been calling this flat my home fo</p>
-                </div>
-              </div><a id="imglink-item-details" href="/item/16229429">
-                <div class="Card-thumnail-container"><span><img src="//photos2.spareroom.co.uk/images/flatshare/listings/large/86/57/86577700.jpg" class="thumbnailImg" alt="Main"></span></div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
 
+
+    </body>
 </html>

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useSnapCarousel} from 'react-snap-carousel'
+import ImageCarousel from "./ImageCarousel";
 
 import {useStyles} from './../App'
 
@@ -14,7 +15,7 @@ const ImagesDisplay: React.FC<Props> = ({images}) => {
     const {scrollRef} = useSnapCarousel()
 
     return (
-    <div className="Card-thumnail-container"> 
+    <div className="Card-thumnail-box"> 
         {
             // TODO: Fix data bug
             // Data bug: Only new records have an array of thumbnails. 
@@ -27,12 +28,17 @@ const ImagesDisplay: React.FC<Props> = ({images}) => {
                 </span>)
                 :
                 <div id='images-carousel'>
+                    <div>
                     <ul
                         ref={scrollRef} 
                         style={{
                             display: 'flex',
-                            overflow: 'auto',
+                            flexDirection: 'row',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            transform: 'translateX(-50%)',
                             scrollSnapType: 'x mandatory',
+
                         }}
                     >
 
@@ -40,7 +46,6 @@ const ImagesDisplay: React.FC<Props> = ({images}) => {
                         <li
                             style={{
                                 backgroundColor: '#fff',
-                                fontSize: '50px',
                                 width: '250px',
                                 height: '250px',
                                 flexShrink: 0,
@@ -59,7 +64,12 @@ const ImagesDisplay: React.FC<Props> = ({images}) => {
                     ))}
                     
                     </ul>
+                    </div>
+                    <div id="image-carousel">
+                        <ImageCarousel images={images} />
+                    </div>
                 </div>
+
         } 
 
     </div>)
