@@ -2,7 +2,7 @@ import React from "react"
 import {Link} from "react-router-dom"
 import ImagesDisplay from "./ImagesDisplay"
 
-import {useStyles} from './../App'
+import {useStyles} from '../App'
 
 type Props = {
     item: IItem,
@@ -15,10 +15,10 @@ const SearchListingRow: React.FC<Props> = ({item, idx}) => {
 
     return (
         <React.Fragment key={item.itemId}>
-            <div className={styles.cardListingRowItem} key={item.itemId}>
+            <div id={`item-${item.itemId}`} className={styles.cardListingRowItem} key={item.itemId}>
                 <span>{item.name}</span>
                 <div className="Card--item-details" id={item.itemId}>
-                    <div className="Card--text__heading" id="short-desc">
+                    <div className="rowHeadingBox" id="short-desc">
                         <h4>Description: {item.description}</h4>
                         <p id="price">Price: {item.price}</p>
                         <p>
@@ -33,7 +33,13 @@ const SearchListingRow: React.FC<Props> = ({item, idx}) => {
                 </div>
 
                 <Link to={`/item/${item.itemId}`} id='imglink-item-details'>
-                    <ImagesDisplay images={item?.thumbnails} />
+                    {item?.thumbnails && item?.thumbnails.length > 1 ?
+                        <img src={item?.thumbnails[0]} 
+                            className={styles.thumbnailImg}
+                            alt="Main image" />
+                     :
+                        <></>
+                    }
                 </Link>
             </div>
         </React.Fragment>

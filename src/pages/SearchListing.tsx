@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Routes, Route, Link, useParams} from "react-router-dom"
 import { useSearchParams } from "react-router-dom";
 import {Card} from "@mui/material"
-import SearchListingRow from "../components/SearchListingRow";
+import SearchListingRow from "../components/SearchListingItem";
 import Pagination from "./../components/Pagination" 
 import {getItems, getItemsByQuery} from "../API"
 
@@ -24,7 +24,7 @@ export default function ItemListing() {
     const pageSizeParam = searchParams.get('pageSize')
     const query = queryParam ? queryParam : ''
     const curpage = pageParam ? Number(pageParam) : 1
-    const totalpages = items.length
+    const totalItems = items.length
     const curPageSize = pageSizeParam ? Number(pageSizeParam) : 10
 
     let [pagesize, setPageSize] = useState<number>(curPageSize)
@@ -58,12 +58,12 @@ export default function ItemListing() {
     }
 
     return (
-        <div id='search-listing-container'>
+        <div id='search-listing-box' className={styles.pageListingBox}>
 
             <div id='pagination-group'>
-                <h3 className='heading-pagination'>Search Results</h3>
+                <h3 className='heading-pagination'>Results for {query}</h3>
 
-                <Pagination curPage={curpage} pageSize={pagesize} totalSize={totalpages} />
+                <Pagination curPage={curpage} pageSize={pagesize} totalItems={totalItems} />
                 <div id="pagination-page-size">
                         Page size: 
                         <select onChange={onPagesizeChange} className='form-select' id="page-size-select">
@@ -74,12 +74,14 @@ export default function ItemListing() {
                 </div>
 
             </div>
-            <div className={styles.cardListingContainer}>
+            <div className={styles.cardListingBox}>
             {
                 items.slice(curpage, pagesize).map((item : IItem, idx : number) => (
                     <>
+                        <hr className={styles.listing} />
                         <SearchListingRow item={item} 
                             idx={idx + pagesize} />
+                        <hr className={styles.listing} />
                     </>
                 ))
             } 

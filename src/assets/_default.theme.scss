@@ -17,27 +17,30 @@ h3 {
     font-weight: 1.2rem;
 }
 
-div.listing-content {
-    border: 1 1 red;
-    border-top: solid 2px green;
-    flex-grow: initial;
-    flex-wrap: wrap;
-    max-width: 400px;
-    max-height: 40%;
-}
-
 a {
     color: brown;
 }
 
-img.thumbnailImg {
-    width: 100%;
-    height: auto;
-    display: block;
-    overflow: visible;
+// App.js layout
+
+.mainPageBox {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+    margin-right: 5px
 }
 
-div.cardListingContainer {
+.leftNav {
+    width: 250px;
+}
+
+div.mainContent {
+    width: 700px;
+    height: auto;
+}
+
+// Search Listing
+div.cardListingBox {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -47,6 +50,13 @@ div.cardListingContainer {
     margin-bottom: 16px;
     max-width: 750px;
     max-height: 700px;
+
+}
+
+
+// Search Result Listing
+.pageListingBox {
+    display: inline-block;
 }
 
 div.cardListingRowItem {
@@ -55,9 +65,13 @@ div.cardListingRowItem {
     width: calc(33.3333333333% - 16px);
     margin-left: 8px;
     margin-right: 8px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 }
 
-div.listingContainer {
+div.listingBox {
     width: 90%;
     display: flex;
     flex-wrap: wrap;
@@ -67,12 +81,66 @@ div.listingContainer {
 }
 
 
-.Card--text__heading {
+// Result Row
+.rowHeadingBox {
     font-size: large;
     font-style: normal;
 }
 
-.Card--text__content {
-    font-size: medium;
-    font-style: normal;
+// left Nav Search Form
+.searchFormBox {
+    border-style: solid;
+    border-width: 1px 1px 2px 1px;
+    margin: 5px 5px;
+    background-color: rgb(221, 230, 230);
+}
+
+// Components
+
+// Images
+img.thumbnailImg {
+    width: 150px;
+    height: auto;
+    display: block;
+    overflow: hidden;
+}
+
+img.itemDetail {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden;
+}
+
+hr.listing {
+    border-top: 1px solid lightgray;
+}
+
+// Buttons
+button.genericButton {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-items: center;
+    box-shadow: 0cap black fade-out($color: #000000, $amount: 0);
+    background-color: rgb(188, 226, 200);
+    min-width: 120px;
+    min-height: 32px;
+
+    &:hover {
+        text-decoration: none;
+        box-shadow: transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px,
+            rgba(0, 0, 0, 0.12) 0px 6px 16px;
+        cursor: pointer;
+    }
+}
+
+.sides {
+    box-shadow: transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px,
+    rgba(0, 0, 0, 0.18) 0px 2px 4px;
+
+
+    &:hover {
+        text-decoration: none;
+        box-shadow: transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px,
+        rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    }
 }

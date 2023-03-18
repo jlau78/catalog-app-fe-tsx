@@ -1,17 +1,22 @@
 import React, {useState, useEffect} from 'react'
 import { URLSearchParams } from "url";
 import {getItem} from "../API"
-import {Link, useParams} from "react-router-dom"
+import {Link, useParams, useLocation} from "react-router-dom"
 import ItemAttributes1 from "../components/ItemAttributes1";
-import ImagesDisplay from '../components/ImagesDisplay';
+import ImageCarousel from '../components/ImageCarousel';
 
 // const ItemDetails: React.FC = () => {
 export default function ItemDetails() {
 
-    const params = useParams()
-    const itemId = params.itemId
+    // const ImageCarousel = React.lazy(() => import ('../components/ImageCarousel'))
+    const curPath = useLocation().pathname
+    console.log('useLocation.pathname:$s', curPath)
+    const {itemId} = useParams()
 
     const [item, setItem] = useState<IItem>()
+
+    console.log('itemDetails - itemId: %s', itemId)
+    console.log('thumbnails: %s', item?.thumbnails)
 
     useEffect(() => {
         getItem(itemId)
@@ -20,6 +25,7 @@ export default function ItemDetails() {
                     throw new Error(`Failed to get item with itemId ${itemId}`)
                 }
                 setItem(data.item);
+                console.log('item with itemId %s: %s', itemId, item)
             })
             .catch((err: Error) => { console.log(err)});
     }, [])
@@ -28,7 +34,7 @@ export default function ItemDetails() {
 
         <div className="Card--item-container" key={item?.itemId}>
             <div>
-                <ImagesDisplay images={item?.thumbnails} />
+                <ImageCarousel images={item?.thumbnails} />
             </div>
             <div className="Card--item-details" data-id={item?.itemId} id='item-details'>
                 <h1>Item Details for {item?.description}</h1>
