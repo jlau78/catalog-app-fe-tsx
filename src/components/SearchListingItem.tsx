@@ -2,7 +2,7 @@ import React from "react"
 import {Link} from "react-router-dom"
 import ImagesDisplay from "./ImagesDisplay"
 
-import {useStyles} from './../App'
+import {useStyles} from '../App'
 
 type Props = {
     item: IItem,
@@ -33,7 +33,13 @@ const SearchListingRow: React.FC<Props> = ({item, idx}) => {
                 </div>
 
                 <Link to={`/item/${item.itemId}`} id='imglink-item-details'>
-                    <ImagesDisplay images={item?.thumbnails} />
+                    {item?.thumbnails && item?.thumbnails.length > 1 ?
+                        <img src={item?.thumbnails[0]} 
+                            className={styles.thumbnailImg}
+                            alt="Main image" />
+                     :
+                        <></>
+                    }
                 </Link>
             </div>
         </React.Fragment>

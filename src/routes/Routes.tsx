@@ -14,7 +14,7 @@ const AppRoutes = () => {
                   element={<ItemListing />}/>
               <Route path="/items/:query"
                     element={<ItemListingWithQuery />} />
-              <Route path="/item"
+              <Route path="/item/:itemId"
                   element={<ItemDetails />}/>
 
           </Routes>

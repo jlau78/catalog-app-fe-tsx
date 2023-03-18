@@ -20,17 +20,8 @@ h3 {
 a {
     color: brown;
 }
-div.cardListingBox {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-left: 8px;
-    margin-right: 8px;
-    max-width: 1200px;
-    margin-bottom: 16px;
-    max-width: 750px;
-    max-height: 700px;
-}
+
+// App.js layout
 
 .mainPageBox {
     display: flex;
@@ -41,6 +32,25 @@ div.cardListingBox {
 
 .leftNav {
     width: 250px;
+}
+
+div.mainContent {
+    width: 700px;
+    height: auto;
+}
+
+// Search Listing
+div.cardListingBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 8px;
+    margin-right: 8px;
+    max-width: 1200px;
+    margin-bottom: 16px;
+    max-width: 750px;
+    max-height: 700px;
+
 }
 
 
@@ -55,6 +65,10 @@ div.cardListingRowItem {
     width: calc(33.3333333333% - 16px);
     margin-left: 8px;
     margin-right: 8px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 }
 
 div.listingBox {
@@ -85,10 +99,21 @@ div.listingBox {
 
 // Images
 img.thumbnailImg {
+    width: 150px;
+    height: auto;
+    display: block;
+    overflow: hidden;
+}
+
+img.itemDetail {
     width: 100%;
     height: auto;
     display: block;
-    overflow: visible;
+    overflow: hidden;
+}
+
+hr.listing {
+    border-top: 1px solid lightgray;
 }
 
 // Buttons
@@ -107,7 +132,6 @@ button.genericButton {
         cursor: pointer;
     }
 }
-
 
 .sides {
     box-shadow: transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px,

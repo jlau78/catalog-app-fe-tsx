@@ -2,14 +2,15 @@ import React from 'react';
 import { useSnapCarousel } from 'react-snap-carousel';
 import { useStyles } from '../App';
 
-type Props = {
-    images: string[]
+type CarouselProps = {
+    images?: string[] 
 }
 
-const ImageCarousel: React.FC<Props> = ({images}) => {
+const ImageCarousel: React.FC<CarouselProps> = ({images}) => {
   const styles = useStyles()
   const { scrollRef, pages, activePageIndex, next, prev, goTo } =
     useSnapCarousel();
+  console.log('carousel images:%s', images)
   return (
     <>
       <ul
@@ -20,7 +21,7 @@ const ImageCarousel: React.FC<Props> = ({images}) => {
           scrollSnapType: 'x mandatory'
         }}
       >
-        {images.map((imgsrc: string, i : number) => (
+        {images?.map((imgsrc: string, i : number) => (
           <li
             style={{
               backgroundColor: 'white',
@@ -33,7 +34,7 @@ const ImageCarousel: React.FC<Props> = ({images}) => {
               alignItems: 'center'
             }}
           >
-            <img src={imgsrc} className={styles.thumbnailImg} key={`img_${i}`}/>
+            <img src={imgsrc} className={styles.itemDetail} key={`img_${i}`}/>
           </li>
         ))}
       </ul>

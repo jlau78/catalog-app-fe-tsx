@@ -24,7 +24,7 @@ const App = () => {
           <SearchItemForm />
         </div>
 
-        <div id="content">
+        <div id="content" className={styles.mainContent}>
 
             <Routes>
               <Route path="/listing" element={<ItemListing />} />

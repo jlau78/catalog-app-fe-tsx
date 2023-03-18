@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Routes, Route, Link, useParams} from "react-router-dom"
 import { useSearchParams } from "react-router-dom";
 import {Card} from "@mui/material"
-import SearchListingRow from "../components/SearchListingRow";
+import SearchListingRow from "../components/SearchListingItem";
 import Pagination from "./../components/Pagination" 
 import {getItems, getItemsByQuery} from "../API"
 
@@ -78,8 +78,10 @@ export default function ItemListing() {
             {
                 items.slice(curpage, pagesize).map((item : IItem, idx : number) => (
                     <>
+                        <hr className={styles.listing} />
                         <SearchListingRow item={item} 
                             idx={idx + pagesize} />
+                        <hr className={styles.listing} />
                     </>
                 ))
             } 
